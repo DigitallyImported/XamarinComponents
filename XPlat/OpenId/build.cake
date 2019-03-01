@@ -3,10 +3,10 @@
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
-var ANDROID_VERSION = "0.4.1";
-var ANDROID_NUGET_VERSION = "0.4.1.1";
-var IOS_VERSION = "0.7.1";
-var IOS_NUGET_VERSION = "0.7.1";
+var ANDROID_VERSION = "0.7.0";
+var ANDROID_NUGET_VERSION = "0.7.0";
+var IOS_VERSION = "0.92.0";
+var IOS_NUGET_VERSION = "0.92.0";
 
 var AAR_URL = string.Format ("https://bintray.com/openid/net.openid/download_file?file_path=net%2Fopenid%2Fappauth%2F{0}%2Fappauth-{0}.aar", ANDROID_VERSION);
 
@@ -20,8 +20,9 @@ var PODFILE = new List<string> {
 
 var buildSpec = new BuildSpec {
 	Libs = new [] {
-		new IOSSolutionBuilder {
+		new DefaultSolutionBuilder {
 			SolutionPath = "./iOS/source/OpenId.AppAuth.iOS.sln",
+			Configuration="Release",
 			OutputFiles = new [] { 
 				new OutputFileCopy {
 					FromFile = "./iOS/source/OpenId.AppAuth.iOS/bin/Release/OpenId.AppAuth.iOS.dll",
@@ -44,13 +45,13 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/OpenIdAuthSampleiOS.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/OpenIdAuthSampleiOS.sln",  Configuration = "Release", Platform="iPhone" },
 		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/OpenIdAuthSampleAndroid.sln" }
 	},
 
-	// Components = new [] {
-	// 	new Component { ManifestDirectory = "./component" }
-	// }
+	Components = new [] {
+		new Component { ManifestDirectory = "./component" }
+	}
 };
 
 Task ("externals-android")

@@ -27,7 +27,11 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/AMViralSwitchSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac},
+		new IOSSolutionBuilder { SolutionPath = "./samples/AMViralSwitchSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac},
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.AMViralSwitch.nuspec" },
 	},
 
 	Components = new [] {

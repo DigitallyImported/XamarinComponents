@@ -14,20 +14,24 @@ var IOS_PODS = new List<string> {
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
 		new IOSSolutionBuilder {
-			SolutionPath = "./InAppSettingsKit.sln",
+			SolutionPath = "./source/InAppSettingsKit.sln",
 			Configuration = "Release",
 			BuildsOn = BuildPlatforms.Mac,
 			OutputFiles = new [] { 
 				new OutputFileCopy {
-					FromFile = "./source/InAppSettingsKit/bin/unified/Release/InAppSettingsKit.dll",
-					ToDirectory = "./output/unified/"
+					FromFile = "./source/InAppSettingsKit/bin/Release/InAppSettingsKit.dll",
+					ToDirectory = "./output/"
 				},
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/InAppSettingsKitSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/InAppSettingsKitSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.InAppSettingsKit.nuspec", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {

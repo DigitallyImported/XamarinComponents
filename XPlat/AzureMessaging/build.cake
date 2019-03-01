@@ -1,10 +1,4 @@
-#tool nuget:?package=XamarinComponent&version=1.1.0.32
-#addin nuget:?package=Cake.XCode&version=1.0.8
-#addin nuget:?package=Cake.Xamarin.Build&version=1.0.16
-#addin nuget:?package=Cake.Xamarin&version=1.3.0.3
-#addin nuget:?package=Cake.FileHelpers&version=1.0.3.2
-
-// #load "../../../common.cake"
+#load "../../common.cake"
 
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
@@ -12,8 +6,8 @@ var IOS_VERSION = "423aaba626e3eccdc4770bee8861a8ab8518563b";
 var IOS_NUGET_VERSION = "1.2.5.2";
 var IOS_URL = string.Format ("https://github.com/Azure/azure-notificationhubs/raw/{0}/iOS/bin/WindowsAzureMessaging.framework.zip", IOS_VERSION);
 
-var ANDROID_VERSION = "0.4";
-var ANDROID_NUGET_VERSION = "0.4.0";
+var ANDROID_VERSION = "0.5";
+var ANDROID_NUGET_VERSION = "0.5.0";
 var ANDROID_URL = string.Format ("https://dl.bintray.com/microsoftazuremobile/SDK/com/microsoft/azure/notification-hubs-android-sdk/{0}/notification-hubs-android-sdk-{0}.aar", ANDROID_VERSION);
 
 var buildSpec = new BuildSpec {
@@ -34,13 +28,13 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/NotificationHubsSampleiOS.sln", Configuration = "Release|iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./iOS/samples/NotificationHubsSampleiOS.sln",  Configuration = "Release", Platform="iPhone" },
 		new DefaultSolutionBuilder { SolutionPath = "./Android/samples/NotificationHubsSampleAndroid.sln" },
 	},
 
 	NuGets = new [] {
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.iOS.nuspec", Version = IOS_NUGET_VERSION },
-		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.Android.nuspec", Version = ANDROID_NUGET_VERSION },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.iOS.nuspec", Version = IOS_NUGET_VERSION, RequireLicenseAcceptance = true  },
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.Azure.NotificationHubs.Android.nuspec", Version = ANDROID_NUGET_VERSION , RequireLicenseAcceptance = true },
 	},
 
 	Components = new [] {

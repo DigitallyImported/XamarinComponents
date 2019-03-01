@@ -1,12 +1,7 @@
-#tool nuget:?package=XamarinComponent
+#load "../../../common.cake"
 
-#addin nuget:?package=Cake.XCode
-#addin nuget:?package=Cake.Xamarin
-#addin nuget:?package=Cake.Xamarin.Build
-#addin nuget:?package=Cake.FileHelpers
-
-var NUGET_VERSION = "4.7.3.2";
-var ESTIMOTE_SDK_VERSION = "4.7.3";
+var NUGET_VERSION = "4.26.3.0";
+var ESTIMOTE_SDK_VERSION = "4.26.3";
 
 var COCOAPODS = new List<string> {
 	"platform :ios, '7.0'",
@@ -30,8 +25,8 @@ var buildSpec = new BuildSpec {
 	},
 
 	Samples = new [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/BeaconExample.sln", Configuration = "Release|iPhone" },
-		new IOSSolutionBuilder { SolutionPath = "./samples/NearableExample.sln", Configuration = "Release|iPhone" }
+		new IOSSolutionBuilder { SolutionPath = "./samples/BeaconExample.sln",  Configuration = "Release", Platform="iPhone" },
+		new IOSSolutionBuilder { SolutionPath = "./samples/NearableExample.sln",  Configuration = "Release", Platform="iPhone" }
 	},
 
 	NuGets  = new [] {

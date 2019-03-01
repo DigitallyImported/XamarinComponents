@@ -4,7 +4,7 @@
 var TARGET = Argument ("t", Argument ("target", "Default"));
 
 var IOS_PODS = new List<string> {
-	"platform :ios, '5.0'",
+	"platform :ios, '6.0'",
 	"install! 'cocoapods', :integrate_targets => false",
 	"target 'Xamarin' do",
 	"pod 'GPUImage', '0.1.7'",
@@ -27,7 +27,7 @@ var buildSpec = new BuildSpec () {
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/GPUImageSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/GPUImageSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	NuGets = new [] {

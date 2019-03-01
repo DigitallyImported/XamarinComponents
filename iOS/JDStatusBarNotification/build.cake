@@ -14,20 +14,24 @@ var IOS_PODS = new List<string> {
 var buildSpec = new BuildSpec () {
 	Libs = new ISolutionBuilder [] {
 		new IOSSolutionBuilder {
-			SolutionPath = "./JDStatusBarNotification.sln",
+			SolutionPath = "./source/JDStatusBarNotification.sln",
 			Configuration = "Release",
 			BuildsOn = BuildPlatforms.Mac,
 			OutputFiles = new [] { 
 				new OutputFileCopy {
-					FromFile = "./source/JDStatusBarNotification/bin/unified/Release/JDStatusBarNotification.dll",
-					ToDirectory = "./output/unified/"
+					FromFile = "./source/JDStatusBarNotification/bin/Release/JDStatusBarNotification.dll",
+					ToDirectory = "./output/"
 				},
 			}
 		},	
 	},
 
 	Samples = new ISolutionBuilder [] {
-		new IOSSolutionBuilder { SolutionPath = "./samples/JDStatusBarNotificationSample.sln", Configuration = "Release|iPhone", BuildsOn = BuildPlatforms.Mac },
+		new IOSSolutionBuilder { SolutionPath = "./samples/JDStatusBarNotificationSample.sln", Configuration = "Release", Platform="iPhone", BuildsOn = BuildPlatforms.Mac },
+	},
+
+	NuGets = new [] {
+		new NuGetInfo { NuSpec = "./nuget/Xamarin.JDStatusBarNotification.nuspec", BuildsOn = BuildPlatforms.Mac },
 	},
 
 	Components = new [] {
